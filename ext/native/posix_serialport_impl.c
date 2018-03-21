@@ -38,7 +38,7 @@
 
 /* on mac os x, not all baud rates are defined in termios.h but
    they are mapped to the numeric value anyway, so we define them here */
-#ifdef __APPLE__
+/*#ifdef __APPLE__
 #ifndef B460800
 #define B460800 460800
 #endif
@@ -54,7 +54,7 @@
 #ifndef B1000000
 #define B1000000 1000000
 #endif
-#endif
+#endif*/
 
 static char sTcgetattr[] = "tcgetattr";
 static char sTcsetattr[] = "tcsetattr";
@@ -236,7 +236,24 @@ VALUE sp_set_modem_params_impl(argc, argv, self)
       case 9600:  data_rate = B9600; break;
       case 19200: data_rate = B19200; break;
       case 38400: data_rate = B38400; break;
-#ifdef B57600
+      
+      case 57600: data_rate = B57600; break;
+      case 115200: data_rate = B115200; break;
+      case 230400: data_rate = B230400; break;
+      case 460800: data_rate = B460800; break;
+      case 500000: data_rate = B500000; break;
+      case 576000: data_rate = B576000; break;
+      case 921600: data_rate = B921600; break;
+      case 1000000: data_rate = B1000000; break;
+      case 1152000: data_rate = B1152000; break;
+      case 1500000: data_rate = B1500000; break;
+      case 2000000: data_rate = B2000000; break;
+      case 2500000: data_rate = B2500000; break;
+      case 3000000: data_rate = B3000000; break;
+      case 3500000: data_rate = B3500000; break;
+      case 4000000: data_rate = B4000000; break;
+
+/*#ifdef B57600
       case 57600: data_rate = B57600; break;
 #endif
 #ifdef B76800
@@ -262,7 +279,7 @@ VALUE sp_set_modem_params_impl(argc, argv, self)
 #endif
 #ifdef B1000000
       case 1000000: data_rate = B1000000; break;
-#endif
+#endif*/
 
       default:
                    rb_raise(rb_eArgError, "unknown baud rate");
